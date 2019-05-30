@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="welcome-card">
+        <ion-img src="assets/windtel_logo.png" style="display: block; width: 35%; height: auto; margin-left: auto; margin-right: auto;"></ion-img>
+        <ion-card-header>
+          <ion-card-title>Welcome to WindTel!</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col align-self-start>
+                  <ion-badge color="tertiary">{{currentUser.rpermissions}}</ion-badge>
+                  {{currentUser.rname}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-button size="small" (click)="logout()" routerLink="/">Logout</ion-button>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-content>
+            <ion-list lines="none">
+                <ion-list-header>
+                  <ion-label>Get started</ion-label>
+                </ion-list-header>
+                <ion-item>
+                  <ion-icon slot="start" color="medium" name="book"></ion-icon>
+                  <ion-label>User Guide (WIP)</ion-label>
+                </ion-item>
+                <ion-item *ngIf="permissions == 'Administrator' || permissions == 'Technician'" class="pointer" (click)="navigate('settings')">
+                  <ion-icon slot="start" color="medium" name="build"></ion-icon>
+                  <ion-label>Settings</ion-label>
+                </ion-item>
+                <ion-item *ngIf="permissions == 'Administrator'" class="pointer" (click)="navigate('manage-users')">
+                    <ion-icon slot="start" color="medium" name="people"></ion-icon>
+                    <ion-label>Manage Users</ion-label>
+                  </ion-item>
+                  <ion-item *ngIf="permissions == 'Administrator'">
+                      <ion-icon slot="start" color="medium" name="folder-open"></ion-icon>
+                      <ion-label>Manage Files (WIP)</ion-label>
+                    </ion-item>
+                    <ion-item *ngIf="permissions == 'Administrator'" class="pointer" (click)="navigate('diagnostics')">
+                        <ion-icon slot="start" color="medium" name="medkit"></ion-icon>
+                        <ion-label>Diagnostics</ion-label>
+                      </ion-item>
+                <ion-item>
+                  <ion-icon slot="start" color="medium" name="help"></ion-icon>
+                  <ion-label>About (WIP)</ion-label>
+                </ion-item>
+              </ion-list>
+        </ion-card-content>
+      </ion-card>
+</ion-content>
